@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-img{
+/* img{
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -15,6 +15,40 @@ img{
 }
 
 h1{
-    padding-left: 55px;
+} */
+h1{
+    display: inline-block;
+    
+}
+.App{
+    margin: 20px;
 }
 
+button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid black;
+}
+button:hover{
+    cursor: pointer;
+
+}
+
+.item-cart{
+    display: inline-block;
+    margin: 20px;
+}
+img{
+    display: inline-block;
+    width: 150px;
+}
+.App{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

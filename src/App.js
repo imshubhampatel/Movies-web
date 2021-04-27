@@ -1,41 +1,79 @@
-import React, { useReducer } from 'react';
-import "./styles.css"
+import React, { useReducer, useEffect, useState } from 'react';
+import userData from "./userData"
+import Item from "./Item";
+import "./styles.css";
 
-const ACTIONS = {
+export const ACTIONS = {
   INCREAMENT: "increament",
-  DICREAMENT: "dicreament"
+  DICREAMENT: "dicreament",
+  DELETE: "delete",
+  LOCAL_STORAGE: "localStorage"
+
 }
 
-function reducer(state, action) {
+
+
+function reducer(item, action) {
   switch (action.type) {
     case ACTIONS.INCREAMENT:
-      return { count: state.count + 1 }
+      console.log('inc', action.payload.id);
+      return item;
+
     case ACTIONS.DICREAMENT:
-      return { count: state.count - 1 }
+      console.log('dicreament', action.payload.id);
+      return item;
+
+    case ACTIONS.DELETE:
+      console.log("delete", action.payload.id)
+      return item.filter(item => item.id !== action.payload.id);
+
+    case ACTIONS.LOCAL_STORAGE:
+      let data = action.payload;
+      console.log(data)
     default:
-      return state;
+      return item;
   }
 }
 
 function App() {
-  const [state, disptach] = useReducer(reducer, { count: 0 })
+
+  const [item, dispatch] = useReducer(reducer, userData);
+  const [items, setItems] = useState(item)
+
+  // when the item updates it will called and passsed all the data from reducer
+  useEffect(() => {
+
+    setItems(item)
+    // seeting up item on webpage look
+  }, [item])
 
 
-  function increaseHandler() {
-    disptach({ type: ACTIONS.INCREAMENT })
-  }
 
-  function dicreaseHandler() {
-    disptach({ type: ACTIONS.DICREAMENT })
-    console.log('Decreasement');
+  useEffect(() => {
+    const itemsJSON = localStorage.getItem("key");
+    // taking data form localStorage
+    if (itemsJSON != null) setItems(JSON.parse(itemsJSON))
 
-  }
+  }, [])
+
+  useEffect(() => {
+    // storing data in localstorage 
+    localStorage.setItem("key", JSON.stringify(items));
+  }, [items])
+
 
   return (
+    // this is out app is rendering 
     <div className="App">
-      <h1>{state.count}</h1>
-      <img onClick={increaseHandler} src="https://cdn0.iconfinder.com/data/icons/ui-16px-perfect-megapack-line/16/82_Add-512.png" alt="increase" />
-      <img onClick={dicreaseHandler} src="https://cdn2.iconfinder.com/data/icons/pinpoint-action/48/remove-256.png" alt="dicrease" />
+      {items.map((item) => {
+        return (
+          <Item
+            key={item.id}
+            item={item}
+            dispatch={dispatch}
+          />
+        )
+      })}
     </div>
   );
 }
