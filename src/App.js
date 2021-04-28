@@ -3,6 +3,8 @@ import userData from "./userData"
 import Item from "./Item";
 import "./styles.css";
 
+
+// these are my actions 
 export const ACTIONS = {
   INCREAMENT: "increament",
   DICREAMENT: "dicreament",
@@ -12,24 +14,22 @@ export const ACTIONS = {
 }
 
 
-
+// this is reducer function 
 function reducer(item, action) {
   switch (action.type) {
+    // increament 
     case ACTIONS.INCREAMENT:
       console.log('inc', action.payload.id);
       return item;
-
+    // dicreament 
     case ACTIONS.DICREAMENT:
       console.log('dicreament', action.payload.id);
       return item;
-
+    // delete
     case ACTIONS.DELETE:
       console.log("delete", action.payload.id)
       return item.filter(item => item.id !== action.payload.id);
-
-    case ACTIONS.LOCAL_STORAGE:
-      let data = action.payload;
-      console.log(data)
+    // return last thing
     default:
       return item;
   }
@@ -49,8 +49,8 @@ function App() {
 
 
 
-  useEffect(() => {
-    const itemsJSON = localStorage.getItem("key");
+  useEffect(async () => {
+    const itemsJSON = await localStorage.getItem("key");
     // taking data form localStorage
     if (itemsJSON != null) setItems(JSON.parse(itemsJSON))
 
