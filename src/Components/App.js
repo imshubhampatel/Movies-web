@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar.jsx';
+import Navbar from './Navbar';
 import MovieCard from "./MovieCard";
 function App() {
   return (
