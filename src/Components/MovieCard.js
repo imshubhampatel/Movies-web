@@ -1,12 +1,13 @@
 import React from 'react';
 import Movies from "./Movies"
-import userData from "../UserData";
 
 
-export default function MovieCard() {
+export default function MovieCard(props) {
+  const movie = props.movie;
+
   return (
     <div className="card-container">
-      {userData.map((movie, index) => {
+      {movie.map((movie, index) => {
         return (
           <Movies
             key={index}
@@ -16,7 +17,6 @@ export default function MovieCard() {
             link={movie.link}
             para={movie.para}
             movie={movie.movie}
-
           />
         )
       })}
