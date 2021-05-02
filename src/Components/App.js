@@ -14,6 +14,10 @@ export default function App(props) {
   // dispatching useEffect 
   useEffect(() => {
     const { store } = props;
+    store.subscribe(()=>
+      console.log("Updated store")
+      
+    )
     store.dispatch(addMovies(userData))
   }, [])
 
