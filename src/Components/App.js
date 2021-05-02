@@ -1,39 +1,34 @@
 import React from 'react';
 import userData from "../UserData";
+import { useEffect, useState } from 'react'
+
+import { addMovies } from "../actions/index"
 import Navbar from './Navbar';
 import MovieCard from "./MovieCard";
 
-class App extends React.Component {
-  componentDidMount() {
-    const { store } = this.props;
+export default function App(props) {
+  let [, setState] = useState();
 
-    //part 2 store is subscribing here 
-    store.subscribe(() => {
-      console.log("Updated");
-      this.forceUpdate();
+  const { list } = props.store.getState();
 
-    })
+  // dispatching useEffect 
+  useEffect(() => {
+    const { store } = props;
+    store.dispatch(addMovies(userData))
+  }, [])
 
-    // part-1 store is dispatching
-    store.dispatch({
-      type: "ADD_MOVIES",
-      movies: userData
-    })
-    console.log("state", this.props.store.getState());
+  // for updating dom 
+  useEffect(() => {
+    setState({});
+  }, [])
 
-  }
-
-
-  render() {
-    const movie = this.props.store.getState();
-    return (
-      <div className="App">
-        <div className="fluid-container">
-          <Navbar />
-          <MovieCard movie={movie} />
-        </div>
+  return (
+    <div className="App">
+      <div className="fluid-container">
+        <Navbar />
+        <MovieCard store={props.store} />
       </div>
-    );
-  }
+    </div>
+  );
 }
-export default App;
+
