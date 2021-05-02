@@ -1,38 +1,43 @@
 import React from 'react';
 import userData from "../UserData";
-import { useEffect, useState } from 'react'
 
 import { addMovies } from "../actions/index"
 import Navbar from './Navbar';
 import MovieCard from "./MovieCard";
 
-export default function App(props) {
-  let [, setState] = useState();
 
-  const { list } = props.store.getState();
+class App extends React.Component {
+  componentDidMount() {
+    const { store } = this.props;
+    store.subscribe(() => {
+      console.log("Updated subscribe store")
+      this.forceUpdate();
 
-  // dispatching useEffect 
-  useEffect(() => {
-    const { store } = props;
-    store.subscribe(()=>
-      console.log("Updated store")
-      
-    )
+    })
     store.dispatch(addMovies(userData))
-  }, [])
+  }
+  render() {
+   
 
-  // for updating dom 
-  useEffect(() => {
-    setState({});
-  }, [])
 
-  return (
-    <div className="App">
-      <div className="fluid-container">
-        <Navbar />
-        <MovieCard store={props.store} />
+    const isMovieFavourite = (movie) => {
+      const { favourite } = this.props.store.getState();
+      const index = favourite.indexOf(movie);
+      if (index !== -1) {
+        // movie found
+        return true;
+      }
+      return false;
+    }
+    return (
+      <div className="App">
+        <div className="fluid-container">
+          <Navbar store={this.props.store} />
+          <MovieCard store={this.props.store} isMovieFavourite={isMovieFavourite} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
+export default App;

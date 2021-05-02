@@ -235,6 +235,18 @@ input[type="submit"]:hover{
 .btn-fav {
     background: var(--yelow-h1);
     color: #fff;
+    width: 150px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    font-family: var(--Roboto);
+    font-weight: 300;
+}
+
+.btn-unfav {
+    background: var(--red-Color);
+    width: 150px;
+    color: #fff;
     padding: 8px 15px;
     border-radius: 5px;
     margin: 0px 5px;
