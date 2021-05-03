@@ -1,5 +1,5 @@
-import { act } from 'react-dom/test-utils'
-import { ACTIONS } from '../actions/index'
+import { ACTIONS } from '../actions/index';
+import { combineReducers } from "redux";
 
 const initialMoviesState = {
     list: [],
@@ -7,7 +7,7 @@ const initialMoviesState = {
     showFavourite: false
 }
 
-export  function movies(state = initialMoviesState, action) {
+export function movies(state = initialMoviesState, action) {
     switch (action.type) {
         case ACTIONS.ADD_MOVIES:
             return {
@@ -46,14 +46,20 @@ export function search(state = initialSearchState, action) {
 
 }
 const initialRootState = {
-    movies:initialMoviesState,
-    search:initialSearchState
+    movies: initialMoviesState,
+    search: initialSearchState
 }
 
-export default function rootReducer(state= initialRootState,action) {
-    return {
-        movies:movies(state.movies,action),
-        search:search(state.search,action)
-    }
-    
-}
+// export default function rootReducer(state = initialRootState, action) {
+//     return {
+//         movies: movies(state.movies, action),
+//         search: search(state.search, action)
+//     }
+
+// }
+
+export default combineReducers({
+    movies,
+    search
+
+})
