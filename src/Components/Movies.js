@@ -4,7 +4,8 @@ import { addFavourite, removeFromFavourite } from '../actions/index'
 
 class Movies extends React.Component {
     render() {
-        const { num, isFavourite, movie } = this.props;
+        // const { movies } = this.props.store.getState();
+        const { num, isFavourite, movie} = this.props;
         const { imgSrc, title, para, link, Rating } = movie;// normal props
 
         // commig dirrently from app.js 

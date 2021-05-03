@@ -3,7 +3,14 @@ import Movies from "./Movies"
 
 
 export default function MovieCard(props) {
-  const { list, showFavourite, favourite } = props.store.getState();
+  const { movies } = props.store.getState();
+
+  const { list, showFavourite, favourite } = movies;
+
+  console.log(list, favourite, showFavourite);
+
+
+
 
   const displayMovies = showFavourite ? favourite : list
 

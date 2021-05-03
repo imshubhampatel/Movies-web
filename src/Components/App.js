@@ -17,12 +17,13 @@ class App extends React.Component {
     store.dispatch(addMovies(userData))
   }
   render() {
-   
 
 
-    const isMovieFavourite = (movie) => {
-      const { favourite } = this.props.store.getState();
-      const index = favourite.indexOf(movie);
+
+    const isMovieFavourite = (data) => {
+      const { movies } = this.props.store.getState();
+      const { favourite } = movies;
+      const index = favourite.indexOf(data);
       if (index !== -1) {
         // movie found
         return true;
