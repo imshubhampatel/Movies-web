@@ -5,6 +5,8 @@ import MovieCard from "./MovieCard";
 import userData from "../UserData";
 
 class App extends React.Component {
+
+  // useeffect is called like componentDidMount 
   componentDidMount() {
     const { store } = this.props;
     store.subscribe(() => {
@@ -13,16 +15,30 @@ class App extends React.Component {
 
     })
     store.dispatch(addMovies(userData))
-    console.log("didmount called", this.props.store.getState());
-    const { list } = this.props.store.getState();
   }
+  // useeffect is called like componentDidMount 
+
   render() {
     const { store } = this.props;
+
+    const isShowFavourites = (movie) => {
+      const { favourites } = this.props.store.getState();
+      // console.log("favourites", favourites);
+      const index = favourites.indexOf(movie);
+
+      if (index === -1) {
+        return true;
+      }
+      return false;
+
+    }
+    // let b = isShowFavourites()
+    // console.log("value of isShowFavourites",b);
     return (
       <div className="App" >
         <div className="fluid-container">
-          <Navbar />
-          <MovieCard store={store} />
+          <Navbar store={store} />
+          <MovieCard store={store} isShowFavourites={isShowFavourites} />
         </div>
       </div>
     );

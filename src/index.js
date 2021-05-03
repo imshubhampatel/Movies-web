@@ -5,7 +5,6 @@ import { createStore } from 'redux';
 import App from './components/App';
 
 const store = createStore(movies)
-console.log("main file store",store.getState())
 
 ReactDOM.render(
   <React.StrictMode>

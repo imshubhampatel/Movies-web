@@ -1,33 +1,31 @@
 import React from 'react';
-import userData from '../UserData';
 import Movies from "./Movies"
 
+export default function MovieCard(props) {
+  console.log("Called from Movie card", props.store.getState());
+  const { list, favourites, showFavourites } = props.store.getState();
+  const { isShowFavourites } = props;
 
-class MovieCard extends React.Component {
-  render() {
-    console.log("getState", this.props.store.getState());
-    const { list } = this.props.store.getState();
-    console.log(list);
-    return (
-      <div className="card-container">
-        {userData.map((movie, index) => {
-          return (
-            <Movies
-              key={index}
-              num={index}
-              imgSrc={movie.imgSrc}
-              Rating={movie.Rating}
-              link={movie.link}
-              para={movie.para}
-              movie={movie.movie}
+  console.log("render");
 
-            />
-          )
-        })}
-      </div>
+  const displayMovies = showFavourites ? favourites : list
 
-    );
-  }
+  return (
+    <div className="card-container">
+      {displayMovies.map((movie, index) => {
+        return (
+          <Movies
+            key={index}
+            num={index}
+            movie={movie}
+            store={props.store}
+            isFavourites={isShowFavourites(movie)}
+          />
+        )
+      })}
+      {displayMovies.length === 0 ? <h1>there is no favourites</h1> : null}
+    </div>
+
+  );
 }
-export default MovieCard;
 

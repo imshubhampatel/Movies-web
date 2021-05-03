@@ -241,6 +241,15 @@ input[type="submit"]:hover{
     font-family: var(--Roboto);
     font-weight: 300;
 }
+.btn-unfav {
+    background: var(--red-Color);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    font-family: var(--Roboto);
+    font-weight: 300;
+}
 li button::first-letter{
     color: var(--yellow-Color);
     font-size: 20px;
