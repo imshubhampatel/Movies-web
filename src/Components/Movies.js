@@ -5,8 +5,8 @@ import { addFavourite, removeFromFavourite } from '../actions/index'
 class Movies extends React.Component {
     render() {
         // const { movies } = this.props.store.getState();
-        const { num, isFavourite, movie} = this.props;
-        const { imgSrc, title, para, link, Rating } = movie;// normal props
+        const { num, isFavourite, movie } = this.props;
+        const { Poster, Title, Plot, imdbRating } = movie;// normal props
 
         // commig dirrently from app.js 
         const addFavHandler = (movie) => {
@@ -29,19 +29,17 @@ class Movies extends React.Component {
             <>
                 <div className="movie-card">
                     <div className="action-left">
-                        <img src={imgSrc} alt="Movie" />
+                        <img src={Poster} alt="Movie" />
                     </div>
                     <div className="action-right">
                         <div className="item-top">
-                            <h1>{num + 1}.  {title}</h1>
-                            <p>{para}</p>
+                            <h1>{num + 1}.  {Title}</h1>
+                            <p>{Plot}</p>
                         </div>
                         <div className="item-bottom">
-                            <h1>Rating :<span>{Rating}</span></h1>
+                            <h1>Rating :<span>{imdbRating}</span></h1>
                             <div className="two-button">
-                                <a href={link}><button className="btn-fav">Watch Now</button></a>
                                 {
-
                                     isFavourite
                                         ? < button className="btn-unfav" onClick={() => unFavHandler(movie)}>Unfavourite</button>
                                         : < button className="btn-fav" onClick={() => addFavHandler(movie)}>Favourite</button>
