@@ -253,6 +253,16 @@ input[type="submit"]:hover{
     font-family: var(--Roboto);
     font-weight: 300;
 }
+.btn-addmovies {
+    background: var(--blue-Color);
+    width: 150px;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    font-family: var(--Roboto);
+    font-weight: 300;
+}
 li button::first-letter{
     color: var(--yellow-Color);
     font-size: 20px;
@@ -262,4 +272,15 @@ li button::first-letter{
 li button:hover{
     background-color: var(--Green-Color);
     transition: 0.3s ease-in;
+}
+
+.nav{
+    position: relative;
+}
+.search-container{
+    position: absolute;
+    top:70%;
+    left: 50%;
+    transform: translate(-50%,0%);
+    width:1000px;
 }
