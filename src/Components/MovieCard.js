@@ -7,7 +7,7 @@ export default function MovieCard(props) {
 
   const { list, showFavourite, favourite } = movies;
 
-  console.log(list, favourite, showFavourite);
+  // console.log(list, favourite, showFavourite);
 
 
 

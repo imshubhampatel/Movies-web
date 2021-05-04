@@ -4,21 +4,20 @@ import userData from "../UserData";
 import { addMovies } from "../actions/index"
 import Navbar from './Navbar';
 import MovieCard from "./MovieCard";
+import { search } from '../reducers';
 
 
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
     store.subscribe(() => {
-      console.log("Updated subscribe store")
+      // console.log("Updated subscribe store")
       this.forceUpdate();
 
     })
     store.dispatch(addMovies(userData))
   }
   render() {
-
-
 
     const isMovieFavourite = (data) => {
       const { movies } = this.props.store.getState();
@@ -33,7 +32,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="fluid-container">
-          <Navbar store={this.props.store} />
+          <Navbar store={this.props.store} search={search} />
           <MovieCard store={this.props.store} isMovieFavourite={isMovieFavourite} />
         </div>
       </div>

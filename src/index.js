@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import App from './components/App';
+import thunk from "redux-thunk";
 import rootReducer from "./reducers/index"
+import App from './components/App';
 
 
 // const logger = function ({ dispatch, getState }) {
@@ -15,15 +16,14 @@ import rootReducer from "./reducers/index"
 // }
 
 const logger = ({ dispatch, getState }) => (next) => (action) => {
-  console.log('ACTION.TYPE==>', action.type);
+  if (typeof action !== "function") {
+    // console.log('ACTION.TYPE==>', action.type);
+  }
   next(action);
-
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger));
-console.log(store.getState());
-
-
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+// console.log(store.getState());
 
 ReactDOM.render(
   <React.StrictMode>

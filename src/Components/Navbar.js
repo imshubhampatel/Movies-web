@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { addMovieToList, handleMovieSearch } from "../actions/index"
 import "../styles.css"
+
 import { setShowFavourite } from "../actions/index"
 
 export default function Navbar(props) {
-  const showResult = true
+  const { store } = props;
+  const { search } = store.getState();
+  const { showResult } = search;
+
+  const movie = search.result; //this movie is comming form api
+  const { Title, imdbRating, Poster, Plot } = movie;
+
+  const [searchText, setSearchText] = useState("");
+
+
   const onChangeTab = (val) => {
-    console.log(val);
+    // console.log(val);
     const { store } = props;
     store.dispatch(setShowFavourite(val))
-
   }
+
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setSearchText(event.target.value)
+  }
+
+
+  const handleSearch = () => {
+    const text = searchText;
+    const { store } = props;
+    store.dispatch(handleMovieSearch(text))
 
   }
-  const handleSearch = () => { }
+
+  const movieAddHandler = (movie) => {
+    const { store } = props;
+    store.dispatch(addMovieToList(movie))
+  }
+
 
   return (
     <>
@@ -29,16 +52,16 @@ export default function Navbar(props) {
           <div className="search-container">
             <div className="movie-card">
               <div className="action-left">
-                <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/2876/862876-v" alt="Movie" />
+                <img src={Poster} alt="Movie" />
               </div>
               <div className="action-right">
                 <div className="item-top">
-                  <h1>Tara</h1>
-                  <p>lore ispusi this word famid silki a and nothing but a great oppertunity for eceryone</p>
+                  <h1>{Title}</h1>
+                  <p>{Plot}</p>
                 </div>
                 <div className="item-bottom">
-                  <h1>Rating :<span>9.4</span></h1>
-                  < button className="btn-addmovies">Add to Movies</button>
+                  <h1>Rating :<span>{imdbRating}</span></h1>
+                  < button className="btn-addmovies" onClick={() => movieAddHandler(movie)}>Add to Movies</button>
                 </div>
               </div>
             </div>

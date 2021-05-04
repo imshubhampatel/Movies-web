@@ -12,16 +12,16 @@ class Movies extends React.Component {
         const addFavHandler = (movie) => {
             const { store } = this.props;
             store.dispatch(addFavourite(movie))
-            console.log(isFavourite);
-            console.log("favstore fav", store.getState());
+            // console.log(isFavourite);
+            // console.log("favstore fav", store.getState());
 
 
         }
         const unFavHandler = (movie) => {
             const { store } = this.props;
             store.dispatch(removeFromFavourite(movie))
-            console.log(isFavourite);
-            console.log("favstore unfav", store.getState());
+            // console.log(isFavourite);
+            // console.log("favstore unfav", store.getState());
 
         }
 
