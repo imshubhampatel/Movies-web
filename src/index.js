@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import movies from "./reducers/index"
 import { createStore } from 'redux';
-import App from './components/App';
+import App from './Components/App';
 
 const store = createStore(movies)
 
