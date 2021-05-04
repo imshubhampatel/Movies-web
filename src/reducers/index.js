@@ -6,6 +6,14 @@ const initialMoviesState = {
     favourite: [],
     showFavourite: false
 }
+//  api key 223ac07a3484cb9b5c127ef18981e3f5
+// const url = "https://api.themoviedb.org/3/search/movie?api_key=223ac07a3484cb9b5c127ef18981e3f5&language=en-US&page=1&include_adult=false&query=horror%20movies";
+// const url="https://api.themoviedb.org/3/movie/24428?api_key=223ac07a3484cb9b5c127ef18981e3f5&language=en-US";
+// undefined
+// fetch(url)
+//     .then(response=>response.json())
+//     .then(data=>console.log(data))
+// Promise {<pending>}
 
 
 // movies reducer 
